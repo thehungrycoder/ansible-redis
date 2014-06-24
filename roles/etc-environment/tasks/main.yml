@@ -1,0 +1,3 @@
+- name: Adding entries to /etc/environment
+  lineinfile: state=present dest=/etc/environment regexp='^{{ item.split('=')[0]|upper }}=["a-z]+' line='{{ item }}'
+  with_items: etc_environment

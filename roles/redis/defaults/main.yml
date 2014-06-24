@@ -1,0 +1,7 @@
+---
+redis:
+  bind_ip: 127.0.0.1
+  port: 6379
+  version: 2:2.2.12-1build1
+
+env_user: ubuntu

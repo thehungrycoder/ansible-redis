@@ -1,0 +1,36 @@
+---
+- name: redis-server
+  hosts: redis
+  user: vagrant
+  sudo: True
+
+  vars:
+    system_packages:
+      - vim
+
+  pre_tasks:
+    - name: Install common dependencies
+      apt: "state=installed pkg={{ item }} update_cache=yes"
+      with_items: system_packages
+
+  roles:
+    - redis
+
+  post_tasks:
+    - name: bind address
+      lineinfile: dest=/etc/redis/redis.conf regexp="^#?bind" line="bind 0.0.0.0" state=present
+      notify:
+        - restart redis
+
+    - name: bind port
+      lineinfile: dest=/etc/redis/redis.conf regexp="^#?port" line="port {{redis.port}}" state=present
+      notify:
+        - restart redis
+
+  handlers:
+     - name: restart redis
+       service: name=redis-server state=restarted
+
+
+  tags:
+    - redis

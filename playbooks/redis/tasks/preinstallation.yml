@@ -1,0 +1,11 @@
+- name: Install common dependencies
+  apt: "state=installed pkg={{ item }} update_cache=yes"
+  with_items: system_packages
+
+- name: Install project dependencies
+  apt: "state=installed pkg={{ item }} update_cache=yes"
+  with_items: project_system_packages
+  when: project_system_packages is defined
+
+- name: Add kernel parameter net.core.somaxconn=65535 in /etc/sysctl.conf
+  sysctl: name=net.core.somaxconn value=65535 state=present reload=yes  

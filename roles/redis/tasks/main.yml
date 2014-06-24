@@ -1,0 +1,12 @@
+- name: "apt-get install redis"
+  apt: pkg=redis-server="{{redis.version}}" update_cache=yes
+
+- name: bind address
+  lineinfile: dest=/etc/redis/redis.conf regexp="^#?bind" line="bind {{redis.bind_ip}}" state=present
+  notify:
+    - restart redis
+
+- name: bind port
+  lineinfile: dest=/etc/redis/redis.conf regexp="^#?port" line="port {{redis.port}}" state=present
+  notify:
+    - restart redis
