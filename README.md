@@ -6,4 +6,4 @@ This is my ansible playground. This repo will contain some of the playbooks that
 
 Redis Playbook
 ==============
-ansible-playbook -i hosts_vagrant 
+ansible-playbook -i hosts_vagrant playbooks/redis/redis.yml
