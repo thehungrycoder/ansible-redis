@@ -1,8 +1,4 @@
-ansible
-=======
-
-This is my ansible playground. This repo will contain some of the playbooks that I've been using to learn Ansible. 
-
+This ansible script will prepare a redis instance
 
 Redis Playbook
 ==============
