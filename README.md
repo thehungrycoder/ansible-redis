@@ -1,6 +1,6 @@
 This ansible script will prepare a redis instance
 
-Redis Playbook
+Usages
 ==============
 ```
 ansible-playbook -i hosts_vagrant playbooks/redis/redis.yml
